@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: semijoia-api
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/semijoia_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: user_dev
+    password: dev_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate # Flyway gerencia o schema
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false # Recomendado para evitar problemas de performance/N+1
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE # API retorna snake_case para o Front
+
+# Configurações de Segurança e JWT
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:4zT39vX92098A123bB456cC789dD012eE345fF678gG901hH2} # Use env var em prod
+
+server:
+  port: 8080
+  error:
+    include-message: always
