@@ -1,8 +1,8 @@
-package br.leetjourney.semijoiasapi.api.dto.response;
+    package br.leetjourney.semijoiasapi.api.dto.response;
 
-public record LoginResponseDTO(
-        String token,
-        String name,
-        String role
-) {
-}
+    public record LoginResponseDTO(
+            String token,
+            String name,
+            String role
+    ) {
+    }
