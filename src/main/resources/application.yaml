@@ -3,9 +3,9 @@ spring:
     name: semijoia-api
 
   datasource:
-    url: jdbc:mysql://localhost:3306/semijoia_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: user_dev
-    password: dev_password
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -16,20 +16,19 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
-    open-in-view: false # Recomendado para evitar problemas de performance/N+1
+    open-in-view: false
 
   flyway:
     enabled: true
     baseline-on-migrate: true
 
   jackson:
-    property-naming-strategy: SNAKE_CASE # API retorna snake_case para o Front
+    property-naming-strategy: SNAKE_CASE
 
-# Configurações de Segurança e JWT
 api:
   security:
     token:
-      secret: ${JWT_SECRET:4zT39vX92098A123bB456cC789dD012eE345fF678gG901hH2} # Use env var em prod
+      secret: ${JWT_SECRET}
 
 server:
   port: 8080
